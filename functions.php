@@ -814,3 +814,34 @@ function dmeng_highlight_keyword($key, $content){
 }
 
 add_filter( 'widget_text', 'do_shortcode' );
+
+
+
+add_filter( 'the_content', 'nofollow_a_links');
+function nofollow_a_links ($content) {
+    $regexp = "<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>";
+    if (preg_match_all("/$regexp/siU", $content, $matches, PREG_SET_ORDER)) {
+        $srcUrl = $_SERVER['SERVER_NAME'];
+        $now_pos =0;
+        for ($i = 0; $i < count($matches); $i++) {
+            //不包含本站域名，同时不是href="/dm/p/5" 这种形式
+            if ( strpos($matches[$i][0], $srcUrl) === false && strpos($matches[$i][0], '//') !== false && strripos($srcUrl,"&seolink=") < 0) {
+                $tag = $matches[$i][0];
+                $tag0 = $matches[$i][0];
+                $noFollow = '';
+                //添加nofollow
+                $pattern = '/rel\s*=\s*"\s*[n|d]ofollow\s*"/';
+                preg_match($pattern, $tag2, $match);
+                if (count($match) < 1) $noFollow.= ' rel="external nofollow" ';
+                //写入
+                if($noFollow != ''){
+                    //只进行单次替换，且使用$now_pos 记录$content的处理进度
+                    $now_pos = strpos($content, $tag0, $now_pos);
+                    $tag = rtrim($tag, '>'); $tag.= $noFollow . '>';
+                    $content = substr_replace( $content, $tag, $now_pos, strlen($tag0) );
+                }
+            }
+        }
+    }
+    return $content;
+}
