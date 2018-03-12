@@ -74,7 +74,7 @@ if( $custom_header ){
 			$login_methods[] = array(
 				'key' => 'qq',
 				'name' => __( 'QQ账号' , 'dmeng' ),
-				'url' => home_url('/?connect=qq&action=login&redirect='.urlencode(dmeng_get_current_page_url()))
+				'url' => home_url('/qqlogin?&action=login&redirect='.urlencode(dmeng_get_current_page_url()))
 			);
 		}
 		if(dmeng_is_open_weibo()){
