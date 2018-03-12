@@ -102,7 +102,7 @@ function dmeng_login_form(){
 		.dmeng-open li a.qq{background-image:url(<?php bloginfo('template_url');?>/images/qq_32x32.png);}
 		.dmeng-open li a.weibo{background-image:url(<?php bloginfo('template_url');?>/images/weibo_32x32.png);}
 	</style>
-<h3 style="color:red">本站只能使用QQ登录！不用注册！</h3>
+<h5 style="color:red">须用QQ/微博登录！可绑定邮箱！无法直接注册</h5>
 <ul class="dmeng-open">
 	<?php
 		foreach( $open_data as $open ){
@@ -138,10 +138,10 @@ function dmeng_open_profile_fields( $user ) {
 		<th scope="row">QQ登录</th>
 		<td>
 	<?php  if(dmeng_is_open_qq($user->ID)) { ?>
-		<p><?php _e('已绑定','dmeng');?> <a href="<?php echo home_url('/?connect=qq&action=logout'); ?>"><?php _e('点击解绑','dmeng');?></a></p>
+		<p><?php _e('已绑定','dmeng');?> <a href="<?php echo home_url('/qqlogin?&action=logout'); ?>"><?php _e('点击解绑','dmeng');?></a></p>
 		<?php echo dmeng_get_avatar( $user->ID , '100' , 'qq' ); ?>
 	<?php }else{ ?>
-		<a class="button button-primary" href="<?php echo home_url('/?connect=qq&action=login'); ?>">绑定QQ账号</a>
+		<a class="button button-primary" href="<?php echo home_url('/qqlogin?&action=login'); ?>">绑定QQ账号</a>
 	<?php } ?>
 		</td>
 	</tr>
@@ -170,7 +170,7 @@ function dmeng_open_profile_fields( $user ) {
 $OPEN_QQ = array(
 	'APPID'=>get_option('dmeng_open_qq_id'),
 	'APPKEY'=>get_option('dmeng_open_qq_key'),
-	'CALLBACK'=>home_url('/?connect=qq')
+	'CALLBACK'=>home_url('/qqlogin')
 );
 
 $OPEN_WEIBO = array(
