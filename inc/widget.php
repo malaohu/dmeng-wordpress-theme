@@ -145,7 +145,7 @@ class DmengOpenWidget extends WP_Widget {
 	}else{
 
 		if( $instance['qq'] && dmeng_is_open_qq() ) {
-			$output .= '<li class="icon qq"><a href="'.home_url('/?connect=qq&action=login&redirect='.urlencode(dmeng_get_current_page_url())).'" rel="nofollow">'.__( '使用QQ账号登录' , 'dmeng' ).'</a></li>';
+			$output .= '<li class="icon qq"><a href="'.home_url('/qqlogin?&action=login&redirect='.urlencode(dmeng_get_current_page_url())).'" rel="nofollow">'.__( '使用QQ账号登录' , 'dmeng' ).'</a></li>';
 		}
 		
 		if( $instance['weibo'] && dmeng_is_open_weibo() ) {
