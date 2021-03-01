@@ -44,7 +44,7 @@ if( is_active_sidebar( 'sidebar-2' ) ){
 			home_url('/'),
 			get_bloginfo('name')
 			 );
-			 $output .=__('版权所有','dmeng').' '.get_option('zh_cn_l10n_icp_num', '').' '.stripslashes(htmlspecialchars_decode(get_option('dmeng_footer_code')));
+			 $output .=__('版权所有','dmeng').' <a href="https://beian.miit.gov.cn/" target="_blank">'.get_option('zh_cn_l10n_icp_num', '').'</a>'.stripslashes(htmlspecialchars_decode(get_option('dmeng_footer_code')));
 			 /*$output .= '<span class="pull-right copyright">'.sprintf(__('<a href="%1$s" target="_blank">WordPress主题</a> 源自 <a href="%2$s" rel="generator" target="_blank">多梦网络</a>','dmeng'), 'http://www.dmeng.net/wordpress/' ,'http://www.dmeng.net/').'</span>';*/
 			 echo $output;
 			?>
